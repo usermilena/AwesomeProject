@@ -1,37 +1,39 @@
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+// const colors = [
+//   '#FD99FF',
+//   '#FF9E9E',
+//   '#91F48F',
+//   '#FFF599',
+//   '#9EFFFF',
+//   '#B69CFF',
+// ];
 
 export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    paddingTop: 42,
   },
   imageWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
   },
-  text: {
+  imageText: {
     color: '#FFF',
     fontSize: 20,
     fontWeight: 300,
   },
-  addIconWrapper: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: -5, height: 0 },
-        shadowRadius: 10,
-        shadowOpacity: 0.3,
-      },
-    }),
-    backgroundColor: '#252525',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
+  noteWrapper: {
+    borderRadius: 10,
+    backgroundColor: '#91F48F',
+    paddingVertical: 22,
+    paddingHorizontal: 45,
+    marginBottom: 25,
+  },
+  noteText: {
+    color: '#000',
+    fontSize: 25,
+    fontWeight: 400,
   },
 });

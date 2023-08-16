@@ -1,10 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { FC } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
+import { StackNavigation } from '../../../type';
 import Arrow from '../../assets/icons/arrow.svg';
-import InfoIcon from '../../assets/icons/info_outline.svg';
-import Save from '../../assets/icons/save.svg';
 import SearchIcon from '../../assets/icons/search.svg';
 import Visibility from '../../assets/icons/visibility.svg';
 import { styles } from './Header.styles';
@@ -17,12 +16,14 @@ export enum HeaderVariant {
 
 interface HeaderProps {
   variant: HeaderVariant;
+  onBack?: () => void;
 }
 
-export const Header: FC<HeaderProps> = ({ variant }) => {
-  const { navigate } = useNavigation();
+export const Header = ({ variant, onBack }: HeaderProps) => {
+  const { navigate } = useNavigation<StackNavigation>();
 
   const goBack = () => {
+    onBack && onBack();
     navigate('Home');
   };
 
@@ -31,35 +32,27 @@ export const Header: FC<HeaderProps> = ({ variant }) => {
       {variant === HeaderVariant.home && (
         <Text style={styles.title}>Notes</Text>
       )}
-      {variant === HeaderVariant.editor && (
+      {(variant === HeaderVariant.editor || variant === HeaderVariant.note) && (
         <TouchableOpacity style={styles.iconsWrapper} onPress={goBack}>
           <Arrow />
         </TouchableOpacity>
       )}
-      <View style={styles.menuWrapper}>
-        <View style={styles.iconsWrapper}>
-          {variant === HeaderVariant.editor && (
-            <TouchableOpacity>
-              <Visibility />
-            </TouchableOpacity>
-          )}
-          {variant === HeaderVariant.home && (
-            <TouchableOpacity>
-              <SearchIcon />
-            </TouchableOpacity>
-          )}
+      {(variant === HeaderVariant.editor || variant === HeaderVariant.home) && (
+        <View style={styles.menuWrapper}>
+          <View style={styles.iconsWrapper}>
+            {variant === HeaderVariant.editor && (
+              <TouchableOpacity>
+                <Visibility />
+              </TouchableOpacity>
+            )}
+            {variant === HeaderVariant.home && (
+              <TouchableOpacity>
+                <SearchIcon />
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
-        <View style={styles.iconsWrapper}>
-          <TouchableOpacity>
-            {variant === HeaderVariant.editor && <Save />}
-          </TouchableOpacity>
-          {variant === HeaderVariant.home && (
-            <TouchableOpacity>
-              <InfoIcon />
-            </TouchableOpacity>
-          )}
-        </View>
-      </View>
+      )}
     </View>
   );
 };
