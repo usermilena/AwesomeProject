@@ -1,14 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-// const colors = [
-//   '#FD99FF',
-//   '#FF9E9E',
-//   '#91F48F',
-//   '#FFF599',
-//   '#9EFFFF',
-//   '#B69CFF',
-// ];
-
 export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -26,7 +17,7 @@ export const styles = StyleSheet.create({
   },
   noteWrapper: {
     borderRadius: 10,
-    backgroundColor: '#91F48F',
+    backgroundColor: '#edebe4',
     paddingVertical: 22,
     paddingHorizontal: 45,
     marginBottom: 25,

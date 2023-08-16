@@ -6,19 +6,24 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Header, HeaderVariant } from '../../components/Header/Header';
 import { IInitialState, INote } from '../../constants/initialState';
-import { addNote } from '../../store/slices/notes.slice';
+import { addNote, editNote } from '../../store/slices/notes.slice';
 import { styles } from './Editor.styles';
 
 export const Editor = () => {
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
-  const dispatch = useDispatch();
   const { params } = useRoute();
-  const notes = useSelector((state: IInitialState) => state.notes.notes);
-
-  const note = notes.find((note: INote) => note.id === params?.id);
+  const note = useSelector((state: IInitialState) =>
+    state.notes.notes.find((note: INote) => note.id === params?.id),
+  );
+  const [title, setTitle] = useState(note ? note?.title : '');
+  const [text, setText] = useState(note ? note?.text : '');
+  const dispatch = useDispatch();
 
   const onBack = () => {
+    if (note) {
+      dispatch(editNote({ title, text, id: note.id }));
+      return;
+    }
+
     if ((!!title && !!text) || (!!title && !text)) {
       dispatch(addNote({ title, text, id: uuid.v4() }));
     }
@@ -36,7 +41,7 @@ export const Editor = () => {
     <View style={styles.wrapper}>
       <Header variant={HeaderVariant.editor} onBack={onBack} />
       <TextInput
-        value={note?.title || title}
+        value={title}
         onChangeText={setTitle}
         placeholder="Title"
         placeholderTextColor="#9A9A9A"
@@ -44,7 +49,7 @@ export const Editor = () => {
         multiline
       />
       <TextInput
-        value={note?.text || text}
+        value={text}
         onChangeText={setText}
         placeholder="Type something..."
         placeholderTextColor="#9A9A9A"

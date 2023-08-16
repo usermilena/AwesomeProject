@@ -5,12 +5,10 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { StackNavigation } from '../../../type';
 import Arrow from '../../assets/icons/arrow.svg';
 import SearchIcon from '../../assets/icons/search.svg';
-import Visibility from '../../assets/icons/visibility.svg';
 import { styles } from './Header.styles';
 
 export enum HeaderVariant {
   home,
-  note,
   editor,
 }
 
@@ -30,28 +28,17 @@ export const Header = ({ variant, onBack }: HeaderProps) => {
   return (
     <View style={styles.wrapper}>
       {variant === HeaderVariant.home && (
-        <Text style={styles.title}>Notes</Text>
+        <View style={styles.menuWrapper}>
+          <Text style={styles.title}>Notes</Text>
+          <TouchableOpacity style={styles.iconWrapper}>
+            <SearchIcon />
+          </TouchableOpacity>
+        </View>
       )}
-      {(variant === HeaderVariant.editor || variant === HeaderVariant.note) && (
-        <TouchableOpacity style={styles.iconsWrapper} onPress={goBack}>
+      {variant === HeaderVariant.editor && (
+        <TouchableOpacity style={styles.iconWrapper} onPress={goBack}>
           <Arrow />
         </TouchableOpacity>
-      )}
-      {(variant === HeaderVariant.editor || variant === HeaderVariant.home) && (
-        <View style={styles.menuWrapper}>
-          <View style={styles.iconsWrapper}>
-            {variant === HeaderVariant.editor && (
-              <TouchableOpacity>
-                <Visibility />
-              </TouchableOpacity>
-            )}
-            {variant === HeaderVariant.home && (
-              <TouchableOpacity>
-                <SearchIcon />
-              </TouchableOpacity>
-            )}
-          </View>
-        </View>
       )}
     </View>
   );
