@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import { StackNavigation } from '../../../type';
+import { StackNavigation } from '../../../types';
 import AddIcon from '../../assets/icons/add.svg';
 import { styles } from './AddButton.styles';
 

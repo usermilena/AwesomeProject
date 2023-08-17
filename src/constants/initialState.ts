@@ -12,6 +12,6 @@ export interface IInitialState {
   notes: INotesInitialState;
 }
 
-export const INITIAL_STATE = {
+export const INITIAL_STATE: INotesInitialState = {
   notes: [],
 };

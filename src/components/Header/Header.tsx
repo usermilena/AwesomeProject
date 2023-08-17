@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import { StackNavigation } from '../../../type';
+import { StackNavigation } from '../../../types';
 import Arrow from '../../assets/icons/arrow.svg';
 import SearchIcon from '../../assets/icons/search.svg';
 import { styles } from './Header.styles';
@@ -20,9 +20,8 @@ interface HeaderProps {
 export const Header = ({ variant, onBack }: HeaderProps) => {
   const { navigate } = useNavigation<StackNavigation>();
 
-  const goBack = () => {
-    onBack && onBack();
-    navigate('Home');
+  const goSearch = () => {
+    navigate('Search');
   };
 
   return (
@@ -30,13 +29,13 @@ export const Header = ({ variant, onBack }: HeaderProps) => {
       {variant === HeaderVariant.home && (
         <View style={styles.menuWrapper}>
           <Text style={styles.title}>Notes</Text>
-          <TouchableOpacity style={styles.iconWrapper}>
+          <TouchableOpacity style={styles.iconWrapper} onPress={goSearch}>
             <SearchIcon />
           </TouchableOpacity>
         </View>
       )}
       {variant === HeaderVariant.editor && (
-        <TouchableOpacity style={styles.iconWrapper} onPress={goBack}>
+        <TouchableOpacity style={styles.iconWrapper} onPress={onBack}>
           <Arrow />
         </TouchableOpacity>
       )}
