@@ -4,7 +4,7 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 
 import { INote } from '../../constants/initialState';
 import { DeleteRow } from '../DeleteRow/DeleteRow';
-import { NoteItem } from '../Note/NoteItem';
+import { NoteItem } from '../NoteItem/NoteItem';
 import { styles } from './NotesList.styles';
 
 interface NotesListProps {
