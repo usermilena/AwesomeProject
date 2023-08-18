@@ -1,30 +1,24 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { FC } from 'react';
-import { Image, Text, View, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { Image, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
 
-import AddIcon from '../../assets/icons/add.svg';
+import { IInitialState } from '../../constants/initialState';
+import { NotesList } from '../NotesList/NotesList';
 import { styles } from './Content.styles';
 
-interface ContentProps {
-  //empty
-}
-
-export const Content: FC<ContentProps> = () => {
-  const { navigate } = useNavigation();
-
-  const addNote = () => {
-    navigate('Editor');
-  };
+export const Content = () => {
+  const notes = useSelector((state: IInitialState) => state.notes.notes);
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.imageWrapper}>
-        <Image source={require('../../assets/images/empty_notes.png')} />
-        <Text style={styles.text}>Create your first note!</Text>
-      </View>
-      <TouchableOpacity style={styles.addIconWrapper} onPress={addNote}>
-        <AddIcon />
-      </TouchableOpacity>
+      {!notes.length ? (
+        <View style={styles.imageWrapper}>
+          <Image source={require('../../assets/images/empty_notes.png')} />
+          <Text style={styles.imageText}>Create your first note!</Text>
+        </View>
+      ) : (
+        <NotesList notes={notes} />
+      )}
     </View>
   );
 };
