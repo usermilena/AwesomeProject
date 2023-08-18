@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Pressable, Text } from 'react-native';
 
 import { StackNavigation } from '../../../types';
 import { INote } from '../../constants/initialState';
@@ -18,8 +18,10 @@ export const NoteItem = ({ note }: NoteItemProps) => {
   };
 
   return (
-    <TouchableOpacity style={styles.noteWrapper} onPress={openNote}>
-      <Text style={styles.noteText}>{note.title}</Text>
-    </TouchableOpacity>
+    <Pressable
+      style={({ pressed }) => (pressed ? styles.pressedNote : styles.note)}
+      onPress={openNote}>
+      <Text style={styles.text}>{note.title}</Text>
+    </Pressable>
   );
 };
