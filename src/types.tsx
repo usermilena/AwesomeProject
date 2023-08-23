@@ -1,9 +1,13 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+interface IEditor {
+  id: string;
+}
+
 export type AppStackParamList = {
   Home: undefined;
-  Editor: { id: string } | undefined;
+  Editor: IEditor | undefined;
   Search: undefined;
 };
 

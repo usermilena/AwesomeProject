@@ -1,12 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { TextInput, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import { StackNavigation } from '../../../types';
 import Close from '../../assets/icons/close.svg';
-import { NotesList } from '../../components/NotesList/NotesList';
+import { EmptySearchResult } from '../../components/EmptySearchResult/EmptySearchResult';
+import { List } from '../../components/List/List';
 import { IInitialState, INote } from '../../constants/initialState';
+import { StackNavigation } from '../../types';
 import { styles } from './Search.styles';
 
 export const Search = () => {
@@ -17,12 +18,12 @@ export const Search = () => {
 
   useEffect(() => {
     if (text) {
-      const res = notes.filter(
+      const filteredNotes = notes.filter(
         note =>
           note.title.toLowerCase().includes(text.toLowerCase()) ||
           note.text.toLowerCase().includes(text.toLowerCase()),
       );
-      setFoundNotes(res);
+      setFoundNotes(filteredNotes);
     }
   }, [text]);
 
@@ -46,13 +47,9 @@ export const Search = () => {
         </TouchableOpacity>
       </View>
       {!text || !foundNotes.length ? (
-        <View style={styles.messageWrapper}>
-          <Text style={styles.message}>
-            File not found. Try searching again.
-          </Text>
-        </View>
+        <EmptySearchResult />
       ) : (
-        <NotesList notes={foundNotes} />
+        <List notes={foundNotes} />
       )}
     </View>
   );

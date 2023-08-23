@@ -24,14 +24,4 @@ export const styles = StyleSheet.create({
     right: 20,
     bottom: '50%',
   },
-  messageWrapper: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-  },
-  message: {
-    color: '#FFF',
-    fontSize: 20,
-    fontWeight: 300,
-  },
 });

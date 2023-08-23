@@ -14,12 +14,4 @@ export const styles = StyleSheet.create({
     fontSize: 43,
     fontWeight: 600,
   },
-  iconWrapper: {
-    width: 50,
-    height: 50,
-    borderRadius: 15,
-    backgroundColor: '#3B3B3B',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });

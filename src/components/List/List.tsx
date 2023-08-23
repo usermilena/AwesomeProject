@@ -2,14 +2,14 @@ import React from 'react';
 import { FlatList, View } from 'react-native';
 
 import { INote } from '../../constants/initialState';
-import { NoteItem } from '../Note/NoteItem';
-import { styles } from './NotesList.styles';
+import { NoteItem } from '../NoteItem/NoteItem';
+import { styles } from './List.styles';
 
-interface NotesListProps {
+interface ListProps {
   notes: INote[];
 }
 
-export const NotesList = ({ notes }: NotesListProps) => {
+export const List = ({ notes }: ListProps) => {
   return (
     <View style={styles.wrapper}>
       <FlatList

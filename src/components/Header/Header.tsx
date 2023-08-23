@@ -1,10 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 
-import { StackNavigation } from '../../../types';
-import Arrow from '../../assets/icons/arrow.svg';
+import BackArrowIcon from '../../assets/icons/arrow.svg';
 import SearchIcon from '../../assets/icons/search.svg';
+import { StackNavigation } from '../../types';
+import { IconButton } from '../IconButton/IconButton';
 import { styles } from './Header.styles';
 
 export enum HeaderVariant {
@@ -29,15 +30,11 @@ export const Header = ({ variant, onBack }: HeaderProps) => {
       {variant === HeaderVariant.home && (
         <View style={styles.menuWrapper}>
           <Text style={styles.title}>Notes</Text>
-          <TouchableOpacity style={styles.iconWrapper} onPress={goSearch}>
-            <SearchIcon />
-          </TouchableOpacity>
+          <IconButton onPress={goSearch} icon={<SearchIcon />} />
         </View>
       )}
       {variant === HeaderVariant.editor && (
-        <TouchableOpacity style={styles.iconWrapper} onPress={onBack}>
-          <Arrow />
-        </TouchableOpacity>
+        <IconButton onPress={onBack} icon={<BackArrowIcon />} />
       )}
     </View>
   );

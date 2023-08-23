@@ -11,10 +11,10 @@ import Animated, {
 import uuid from 'react-native-uuid';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { EditorScreenRouteProp, StackNavigation } from '../../../types';
 import { Header, HeaderVariant } from '../../components/Header/Header';
 import { IInitialState } from '../../constants/initialState';
 import { addNote, editNote } from '../../store/slices/notes.slice';
+import { EditorScreenRouteProp, StackNavigation } from '../../types';
 import { styles } from './Editor.styles';
 
 export const Editor = () => {
@@ -35,13 +35,13 @@ export const Editor = () => {
   }));
 
   const onBack = () => {
-    if (note) {
+    if (note?.id) {
       dispatch(editNote({ title, text, id: note.id }));
       navigate('Home');
       return;
     }
 
-    if ((title && text) || (title && !text)) {
+    if (title) {
       dispatch(addNote({ title, text, id: uuid.v4() }));
       navigate('Home');
       return;

@@ -1,40 +1,17 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import { Text } from 'react-native';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import { AppStackParamList } from '../types';
-import { Editor } from './pages/Editor/Editor';
-import { Home } from './pages/Home/Home';
-import { Search } from './pages/Search/Search';
-import { store } from './store';
+import { Router } from './Router';
+import { persistor, store } from './store';
 
-const Stack = createNativeStackNavigator<AppStackParamList>();
-
-const App = () => {
+export const App = () => {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Editor"
-            component={Editor}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Search"
-            component={Search}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <PersistGate loading={<Text>Loading...</Text>} persistor={persistor}>
+        <Router />
+      </PersistGate>
     </Provider>
   );
 };
-
-export default App;

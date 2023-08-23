@@ -2,8 +2,8 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import { StackNavigation } from '../../../types';
-import AddIcon from '../../assets/icons/add.svg';
+import AddIcon from '../../../../assets/icons/add.svg';
+import { StackNavigation } from '../../../../types';
 import { styles } from './AddButton.styles';
 
 export const AddButton = () => {

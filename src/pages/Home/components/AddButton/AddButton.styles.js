@@ -5,15 +5,10 @@ export const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 35,
-
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: -5, height: 0 },
-        shadowRadius: 10,
-        shadowOpacity: 0.3,
-      },
-    }),
+    shadowColor: '#000',
+    shadowOffset: { width: -5, height: 0 },
+    shadowRadius: 10,
+    shadowOpacity: 0.3,
     backgroundColor: '#252525',
     justifyContent: 'center',
     alignItems: 'center',
